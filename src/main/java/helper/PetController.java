@@ -56,4 +56,14 @@ public  class PetController {
                        .assertThat()
                        .extract().response();
     }
+    public Response searchPet(long petId) {
+        return RestAssured.given()
+                       .when()
+                       .delete(URL + PET + "/" + petId)
+                       .then()
+                       .statusCode(404)
+                       .assertThat()
+                       .extract().response();
+    }
+    
 }

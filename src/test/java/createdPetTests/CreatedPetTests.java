@@ -2,8 +2,8 @@ package createdPetTests;
 
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
-import petResponse.Category;
 import pet.PetResponse;
+import petResponse.Category;
 import testBase.TestBase;
 
 import static data.PetEndpoints.*;
@@ -23,7 +23,7 @@ public class CreatedPetTests extends TestBase {
     
     @Test
     public void shouldCreatedPetWithNameTest() {
-        PetResponse petResponse = petApiClient.craetedPet(createPetDto(name, 1))
+        PetResponse petResponse = petApiClient.createdPet(createPetDto(name, 1))
                                           .then()
                                           .statusCode(200)
                                           .assertThat()

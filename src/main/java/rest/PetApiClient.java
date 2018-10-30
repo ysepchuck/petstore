@@ -12,7 +12,7 @@ public class PetApiClient {
     
     RestClientSpecification api = new RestClientSpecification();
     
-    public Response craetedPet(RequestPetModel pet){
+    public Response createdPet(RequestPetModel pet){
        return RestAssured.given(api.specification(ADD_PET_URL))
                       .body(pet)
                       .post(ADD_PET_URL);

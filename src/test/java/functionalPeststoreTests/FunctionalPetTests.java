@@ -1,6 +1,7 @@
-package functionalTests;
+package functionalPeststoreTests;
 
 import helper.PetController;
+import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.Test;
 import petResponse.RequestPetModel;
 import testBase.TestBase;
@@ -10,10 +11,11 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class FunctionalPetTests extends TestBase {
     long getPetId;
+    int id = 1;
     RequestPetModel newPet = new RequestPetModel();
     PetController petController = new PetController(newPet);
     
-    @Test
+    @Test(priority = 1)
     public void shouldCreatedPetTest() {
         
         petController.addNewPet(petName, petId);
@@ -22,20 +24,24 @@ public class FunctionalPetTests extends TestBase {
         assertThat(resultPet.getId(), equalTo(petId));
     }
     
-    @Test
+    @Test(priority = 2)
     public void shouldDeletePetTest() {
          petController.deletePet(1);
          
-        System.out.println();
+        
     }
     
     
-    @Test
+    @Test(priority = 3)
     public void petShouldBeDeleted(){
-        int id = 1;
-        petController.deletePet(id);
-        
-        
-        
+    
+        SoftAssertions assertions = new SoftAssertions();
+        petController.searchPet(id).prettyPrint();
+        assertions.assertThat(petController.addNewPet(petName,2).getId());
+        assertions.assertAll();
+    
+    
+    
+    
     }
 }
